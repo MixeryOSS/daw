@@ -34,4 +34,4 @@ jobs:
           path: |
             build/index.html
             build/bundle.js
-            addons
+            build/addons
