@@ -14,13 +14,14 @@ jobs:
       - name: Obtain Mixery CLI
         run: git clone https://github.com/MixeryOSS/cli.git
       - name: Build Mixery CLI
+        working-directory: cli
         run: |
           npm install
           npm run build
-        working-directory: cli
       - name: Build Mixery Engine
         working-directory: engine
         run: |
+          ls -la
           npm install
           npm run build
       - name: Build Mixery DAW
