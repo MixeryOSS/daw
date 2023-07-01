@@ -1,3 +1,6 @@
 {
-    "type": "configuration"
+    "type": "configuration",
+    "links": {
+        "@mixery/engine": "engine"
+    }
 }
