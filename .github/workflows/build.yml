@@ -1,0 +1,37 @@
+name: Manual Build
+on:
+  - workflow_dispatch
+  - push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - run: ls -la
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '19'
+      - name: Obtain Mixery CLI
+        run: git clone https://github.com/MixeryOSS/cli.git
+      - name: Build Mixery CLI
+        working-directory: cli
+        run: |
+          npm install
+          npm run build
+      - name: Build Mixery Engine
+        working-directory: engine
+        run: |
+          npm install
+          npm run build
+      - name: Build Mixery DAW
+        run: node cli build
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: Mixery DAW static files
+          path: |
+            build/index.html
+            build/bundle.js
+            build/addons
