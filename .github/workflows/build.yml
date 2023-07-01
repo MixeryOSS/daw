@@ -7,6 +7,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          submodules: recursive
       - run: ls -la
       - uses: actions/setup-node@v3
         with:
@@ -21,7 +23,6 @@ jobs:
       - name: Build Mixery Engine
         working-directory: engine
         run: |
-          ls -la
           npm install
           npm run build
       - name: Build Mixery DAW
